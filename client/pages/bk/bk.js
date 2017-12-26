@@ -251,7 +251,7 @@ Page({
       if (callback != null && typeof (callback) == 'function') {
         callback()
       }
-      // console.log('stock kline result ', results)
+      console.log('stock kline result ', results)
       that.kLineView.drawKLineCanvas(results, getCanvasId(that.data.quotePeriod), that.data.quotePeriod)
     }, function (res) {
       console.log("------fail----", res)

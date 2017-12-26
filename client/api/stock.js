@@ -75,7 +75,7 @@ function getMinutes({id, date, time, mmp = false} = {}) {
         },
         url: `${Service.BaseQuotaUrl}`,
     }).then(function (res) {
-      console.log('getMinutes' +JSON.stringify(res));
+      //console.log('getMinutes' +JSON.stringify(res));
         if (res.statusCode == 200) {
             // console.log('get minute result data ', res.data)
             var result = parser.parseMinutesData(res.data)
@@ -114,7 +114,7 @@ function getKLines({id, begin, size, period, time = 0, ma = 7} = {}) {
       console.log('getKLines'+res)
         if (res.statusCode == 200) {
             // console.log('get kline result data ' , res.data)
-            var results = parser.parseKLinesData(res.data.k_lines)
+            var results = parser.parseKLinesData(res.data.data.k_lines)
             return results
         } else {
             return Promise.reject(StaticStrings.kGetDataErrorInfo)

@@ -48,11 +48,22 @@ function parseMinutesData(data) {
 
 // 解析k线数据
 function parseKLinesData(array) {
+  // console.log('解析k线数据' + JSON.stringify(array));
+  var  tmp = [];
+  for (var key in array) {
+       //key是属性,object[key]是值
+    //    tmp.push(key);//往数组中放属性
+    array[key]['datetime'] = key;
+    tmp.push(array[key]);
+  }
+  array = tmp;
     var results = []
+    //array = Array.prototype.slice.call(array);
     for (var i = array.length - 1; i >= 0; i--) {
         var item = new KLineData(array[i].datetime, array[i].open, array[i].high, array[i].low, array[i].close, array[i].ma5, array[i].ma10, array[i].ma20, array[i].amount, array[i].price, array[i].volume)
         results.push(item)
     }
+    //console.log('解析k线数据结果' + JSON.stringify(results));
     return results
 }
 

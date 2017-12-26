@@ -13,12 +13,12 @@ class Demo extends CI_Controller {
             'statusCode' => 200,
             'data' => [
                 //'msg' => $ticker,
-                // 'k_lines' => $candlesticks
-                'post' => $_POST,
-                'get' => $_GET,
-                'setver' => $_SERVER,
-                'this' => $this,
-                'k_lines' => $ticker['BNBBTC']
+                'k_lines' => $candlesticks
+                // 'post' => $_POST,
+                // 'get' => $_GET,
+                // 'setver' => $_SERVER,
+                // 'this' => $this,
+                // 'k_lines' => $ticker['BNBBTC']
             ]
         ]);
     }
