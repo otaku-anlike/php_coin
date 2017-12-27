@@ -303,8 +303,8 @@ KLineCanvas.prototype.calculate = function() {
 // 分时布局开始绘制
 KLineCanvas.prototype.invalidate = function(id) {
 	if (this.mIsInit == true) {
+    console.log('分时布局开始绘制' + id)
 		this.calculate()
-
 		const context = wx.createCanvasContext(id)
 		this.chartView.onDraw(context)
 		context.draw()

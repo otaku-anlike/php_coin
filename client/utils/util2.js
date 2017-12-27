@@ -1,6 +1,47 @@
 
 var Color = require('../models/Color.js')
 
+const formatTime = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+
+// 显示繁忙提示
+var showBusy = text => wx.showToast({
+  title: text,
+  icon: 'loading',
+  duration: 10000
+})
+
+// 显示成功提示
+var showSuccess = text => wx.showToast({
+  title: text,
+  icon: 'success'
+})
+
+// 显示失败提示
+var showModel = (title, content) => {
+  wx.hideToast();
+
+  wx.showModal({
+    title,
+    content: JSON.stringify(content),
+    showCancel: false
+  })
+}
+
 // 数字格式化
 function formateNumber(num, length) {
     return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num;
@@ -24,21 +65,24 @@ function formateTime(date, formate) {
 
 // 转换时间显示格式  20140601 --> 2014-06-01
 function formatDateYYYYmmdd(originDate, seperator) {
-    var result = ''
+  var newDate = new Date();
+  newDate.setTime(originDate * 1000);
+  var result = newDate.toISOString().substr(0, 10)
+    // var result = ''
 
-    var tSeperator = '-'
-    if (seperator != null && seperator != '') {
-        tSeperator = seperator
-    }
+    // var tSeperator = '-'
+    // if (seperator != null && seperator != '') {
+    //     tSeperator = seperator
+    // }
 
-    originDate = originDate + ''
-    var length = originDate.length
-    if (length >= 8) {
-        var year = originDate.substr(0, 4)
-        var month = originDate.substr(4, 2)
-        var day = originDate.substr(6, 2)
-        result = year + tSeperator + month + tSeperator + day
-    }
+    // originDate = originDate + ''
+    // var length = originDate.length
+    // if (length >= 8) {
+    //     var year = originDate.substr(0, 4)
+    //     var month = originDate.substr(4, 2)
+    //     var day = originDate.substr(6, 2)
+    //     result = year + tSeperator + month + tSeperator + day
+    // }
 
     return result
 }
@@ -420,5 +464,6 @@ module.exports = {
     //formatKanPanTime: formatKanPanTime,
     //formatDateHHMM: formatDateHHMM,
     getCurrentGoodsClassType: getCurrentGoodsClassType,
-    formatDateY_M_D_HHmm: formatDateY_M_D_HHmm
+    formatDateY_M_D_HHmm: formatDateY_M_D_HHmm,
+    formatTime, showBusy, showSuccess, showModel
 }
