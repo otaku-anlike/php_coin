@@ -26,7 +26,7 @@ function parseSearchData(array) {
 
 // 解析分时数据
 function parseMinutesData(data) {
-    var array = data.trend_line
+    var array = data.k_lines
     var minutes = []
 
     if (array != null && array.length > 0) {

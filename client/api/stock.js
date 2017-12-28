@@ -68,12 +68,14 @@ function getMinutes({id, date, time, mmp = false} = {}) {
         showLoading: false,
         showFailMsg: false,
         data: {
-            goods_id: id,
-            last_update_market_date: date,
-            last_recv_time: time,
-            request_mmp: mmp
+            // goods_id: id,
+            // last_update_market_date: date,
+            // last_recv_time: time,
+            // request_mmp: mmp
+          symbol_id: 'BTCUSDT',
+          period: '1m'
         },
-        url: `${Service.BaseQuotaUrl}`,
+        url: `${Service.BaseQuotaUrl}`+'/kline/',
     }).then(function (res) {
       //console.log('getMinutes' +JSON.stringify(res));
         if (res.statusCode == 200) {

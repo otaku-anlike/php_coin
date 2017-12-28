@@ -14,7 +14,7 @@ let BaseUrl = `${config.service.host}/weapp/`
 
 let BaseInfoUrl = BaseUrl + "info" + "?X-Protocol-Id="          // 新闻
 // let BaseQuotaUrl = BaseUrl + "quota" + "?X-Protocol-Id="        // 行情
-let BaseQuotaUrl = BaseUrl + "demo"        // 行情
+let BaseQuotaUrl = BaseUrl + "binance"        // 行情
 let BaseHaoGuUrl = BaseUrl + "biz" + "?X-Protocol-Id="          // 好股
 let BaseOptionalUrl = BaseUrl + "web/usertransfer" + "?X-Protocol-Id="      // 自选
 
